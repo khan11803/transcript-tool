@@ -173,7 +173,8 @@
       <p class="contact-subtitle">
         Have a project in mind or just want to say hi? Drop me a message!
       </p>
-      <form id="contactForm" class="contact-form" novalidate>
+      <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="PASTE-YOUR-KEY-HERE">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Your name" required />
