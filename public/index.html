@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TranscriptLab – YouTube Transcript Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <!-- Home Section -->
+  <section id="homeSection" class="home-section">
+    <div class="container">
+      <div class="home-content">
+        <h1 class="logo-title">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+          </svg>
+          TranscriptLab
+        </h1>
+        <p class="subtitle">Get the transcript of any YouTube video instantly</p>
+
+        <div class="input-group">
+          <input
+            type="text"
+            id="urlInput"
+            class="url-input"
+            placeholder="Paste YouTube URL here (e.g., https://youtube.com/watch?v=...)"
+            autocomplete="off"
+          />
+          <button id="fetchBtn" class="btn btn-primary">
+            <span class="btn-text">Get Transcript</span>
+            <span class="spinner"></span>
+          </button>
+        </div>
+
+        <p class="error-message" id="errorMessage"></p>
+
+        <div class="features">
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Synced playback</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>One-click copy</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <span>Search & highlight</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            <span>AI prompt library</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Result Section -->
+  <section id="resultSection" class="result-section hidden">
+    <div class="result-container">
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <button id="backBtn" class="btn btn-secondary btn-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          New Video
+        </button>
+
+        <div class="toolbar-actions">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search transcript..." />
+            <button id="clearSearch" class="clear-btn hidden">×</button>
+          </div>
+
+          <button id="aiPromptsBtn" class="btn btn-secondary btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            AI Prompts
+          </button>
+
+          <button id="copyBtn" class="btn btn-secondary btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy
+          </button>
+
+          <button id="downloadBtn" class="btn btn-secondary btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="result-content">
+
+        <!-- Video Column -->
+        <div class="video-column">
+          <div class="video-wrapper">
+            <div id="player"></div>
+          </div>
+        </div>
+
+        <!-- Transcript Column -->
+        <div class="transcript-column">
+          <div class="transcript-header">
+            <h2>Transcript</h2>
+            <div class="transcript-controls">
+              <label class="checkbox-label">
+                <input type="checkbox" id="timestampToggle" checked />
+                <span>Show timestamps</span>
+              </label>
+              <button id="selectModeBtn" class="btn btn-small">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 11 12 14 22 4"></polyline>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+                Select Mode
+              </button>
+              <button id="deleteSelectedBtn" class="btn btn-small btn-danger hidden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                Delete Selected
+              </button>
+            </div>
+          </div>
+
+          <div id="transcriptList" class="transcript-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Prompts Modal -->
+  <div id="aiPromptsModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>AI Prompt Library</h3>
+        <button class="modal-close" id="closeAiModal">×</button>
+      </div>
+      <p class="modal-description">Click any prompt to copy it with the transcript, then paste into ChatGPT or Claude.</p>
+      <div class="prompts-grid">
+
+        <div class="prompt-card" data-prompt="Provide a comprehensive summary of the following video transcript in 3-4 paragraphs. Focus on the main ideas and key takeaways.">
+          <div class="prompt-icon">📝</div>
+          <h4>Summary</h4>
+          <p>Get a concise summary of the video content</p>
+        </div>
+
+        <div class="prompt-card" data-prompt="Extract and list the key points from this video transcript. Format as a bulleted list with clear, actionable insights.">
+          <div class="prompt-icon">🎯</div>
+          <h4>Key Points</h4>
+          <p>Extract main takeaways in bullet form</p>
+        </div>
+
+        <div class="prompt-card" data-prompt="Convert this video transcript into detailed study notes. Include main concepts, definitions, and examples. Organize with headings and subheadings.">
+          <div class="prompt-icon">📚</div>
+          <h4>Study Notes</h4>
+          <p>Transform into structured study material</p>
+        </div>
+
+        <div class="prompt-card" data-prompt="Based on this transcript, create a 10-question quiz with multiple choice answers. Include the correct answer and a brief explanation for each question.">
+          <div class="prompt-icon">✅</div>
+          <h4>Quiz</h4>
+          <p>Generate questions to test understanding</p>
+        </div>
+
+        <div class="prompt-card" data-prompt="Write an engaging blog post based on this transcript. Include an introduction, main body with subheadings, and a conclusion. Make it conversational and easy to read.">
+          <div class="prompt-icon">✍️</div>
+          <h4>Blog Post</h4>
+          <p>Turn the content into a blog article</p>
+        </div>
+
+        <div class="prompt-card" data-prompt="Create a Twitter/X thread from this transcript. Write 8-12 tweets that capture the main ideas. Each tweet should be engaging and self-contained. Start with a hook tweet.">
+          <div class="prompt-icon">🐦</div>
+          <h4>Tweet Thread</h4>
+          <p>Convert to a viral Twitter thread</p>
+        </div>
+
+        <div class="prompt-card" data-prompt="Extract the most powerful, memorable quotes from this transcript. Present 5-8 quotes that capture the essence of the content. Include brief context for each.">
+          <div class="prompt-icon">💬</div>
+          <h4>Powerful Quotes</h4>
+          <p>Pull out the most impactful statements</p>
+        </div>
+
+        <div class="prompt-card" data-prompt="Generate a Q&A document from this transcript. Create 10 common questions someone might have about this topic and answer them based on the content.">
+          <div class="prompt-icon">❓</div>
+          <h4>Q&A</h4>
+          <p>Create questions and answers</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Copy Options Modal -->
+  <div id="copyOptionsModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-small">
+      <div class="modal-header">
+        <h3>Copy Options</h3>
+        <button class="modal-close" id="closeCopyModal">×</button>
+      </div>
+      <div class="copy-options">
+        <button class="copy-option-btn" data-timestamps="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>With Timestamps</span>
+        </button>
+        <button class="copy-option-btn" data-timestamps="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <span>Text Only</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js"></script>
+</body>
+</html>

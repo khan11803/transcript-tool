@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Web Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- ───────── NAV ───────── -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="logo">&lt;Dev /&gt;</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ───────── HERO ───────── -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting animate-in">Hello, I'm</p>
+      <h1 class="hero-name animate-in delay-1">Alex Khan</h1>
+      <p class="hero-tagline animate-in delay-2">
+        I build clean, performant web experiences that people love to use.
+      </p>
+      <a href="#projects" class="btn btn-primary animate-in delay-3">View My Work</a>
+    </div>
+    <div class="hero-blob" aria-hidden="true"></div>
+  </section>
+
+  <!-- ───────── ABOUT ───────── -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-image">
+          <div class="about-image-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+              <path d="M4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>
+            I'm a full-stack web developer with a passion for crafting intuitive
+            interfaces and scalable backends. With several years of experience
+            shipping production applications, I focus on writing clean code and
+            delivering great user experiences.
+          </p>
+          <p>
+            My toolkit includes <strong>HTML</strong>, <strong>CSS</strong>,
+            <strong>JavaScript</strong>, <strong>React</strong>,
+            <strong>Node.js</strong>, and <strong>Python</strong>. When I'm not
+            coding, you'll find me contributing to open-source projects or
+            exploring new technologies.
+          </p>
+          <div class="tech-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            <span>React</span><span>Node.js</span><span>Python</span>
+            <span>Git</span><span>SQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── PROJECTS ───────── -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-image">
+            <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="225" fill="#1a1a2e"/>
+              <circle cx="200" cy="90" r="40" fill="#00e5ff" opacity=".25"/>
+              <rect x="120" y="140" width="160" height="12" rx="6" fill="#00e5ff" opacity=".3"/>
+              <rect x="150" y="162" width="100" height="8" rx="4" fill="#00e5ff" opacity=".15"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3>TaskFlow</h3>
+            <p>
+              A real-time task-management app with drag-and-drop boards,
+              team collaboration, and analytics dashboard.
+            </p>
+            <div class="project-tags">
+              <span>React</span><span>Node.js</span><span>MongoDB</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-small">Live Demo</a>
+              <a href="#" class="btn btn-small btn-outline">Source</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="225" fill="#1a1a2e"/>
+              <rect x="80" y="60" width="100" height="100" rx="12" fill="#00e5ff" opacity=".2"/>
+              <rect x="220" y="60" width="100" height="100" rx="12" fill="#00e5ff" opacity=".15"/>
+              <rect x="150" y="30" width="100" height="100" rx="12" fill="#00e5ff" opacity=".25"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3>PixelSnap</h3>
+            <p>
+              An image-processing toolkit that lets users apply filters, resize,
+              and batch-export images in the browser.
+            </p>
+            <div class="project-tags">
+              <span>JavaScript</span><span>Canvas API</span><span>Web Workers</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-small">Live Demo</a>
+              <a href="#" class="btn btn-small btn-outline">Source</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="225" fill="#1a1a2e"/>
+              <polyline points="60,180 130,100 200,140 270,60 340,90"
+                fill="none" stroke="#00e5ff" stroke-width="3" opacity=".5"/>
+              <circle cx="130" cy="100" r="5" fill="#00e5ff" opacity=".6"/>
+              <circle cx="200" cy="140" r="5" fill="#00e5ff" opacity=".6"/>
+              <circle cx="270" cy="60" r="5" fill="#00e5ff" opacity=".6"/>
+              <circle cx="340" cy="90" r="5" fill="#00e5ff" opacity=".6"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3>Insightful</h3>
+            <p>
+              A lightweight analytics dashboard that visualizes website traffic,
+              user behaviour, and conversion funnels.
+            </p>
+            <div class="project-tags">
+              <span>Python</span><span>D3.js</span><span>PostgreSQL</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-small">Live Demo</a>
+              <a href="#" class="btn btn-small btn-outline">Source</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── CONTACT ───────── -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="contact-subtitle">
+        Have a project in mind or just want to say hi? Drop me a message!
+      </p>
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group full-width">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Your message…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary full-width">Send Message</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="social-links">
+        <!-- GitHub -->
+        <a href="#" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.11.82-.26.82-.58v-2.16c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 0 0-1.33-1.76c-1.09-.74.08-.73.08-.73a2.52 2.52 0 0 1 1.84 1.24 2.56 2.56 0 0 0 3.5 1 2.56 2.56 0 0 1 .76-1.6c-2.67-.3-5.47-1.33-5.47-5.93a4.64 4.64 0 0 1 1.24-3.22 4.3 4.3 0 0 1 .12-3.18s1-.32 3.3 1.23a11.38 11.38 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23a4.3 4.3 0 0 1 .12 3.18 4.64 4.64 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92a2.86 2.86 0 0 1 .82 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/>
+          </svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77A1.75 1.75 0 0 0 0 1.73v20.54A1.75 1.75 0 0 0 1.77 24h20.45A1.76 1.76 0 0 0 24 22.27V1.73A1.76 1.76 0 0 0 22.22 0Z"/>
+          </svg>
+        </a>
+        <!-- Twitter / X -->
+        <a href="#" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.63 7.58H.49l8.6-9.83L0 1.15h7.59l5.24 6.93 6.06-6.93Zm-1.3 19.5h2.04L6.49 3.24H4.3l13.3 17.41Z"/>
+          </svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:hello@example.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0-8.953 5.468a1.5 1.5 0 0 1-1.594 0L2.25 6.75"/>
+          </svg>
+        </a>
+      </div>
+      <p class="copyright">&copy; 2026 Alex Khan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
