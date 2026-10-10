@@ -126,21 +126,38 @@
       return;
     }
 
-    // Simulate sending (no backend)
+    // Send via Web3Forms
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled    = true;
     btn.textContent = 'Sending…';
 
-    setTimeout(function () {
-      form.reset();
+    var formData = new FormData(form);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.success) {
+        form.reset();
+        showStatus('Message sent! Thanks for reaching out.', 'success');
+        setTimeout(function () {
+          statusEl.textContent = '';
+        }, 5000);
+      } else {
+        showStatus('Something went wrong. Please try again.', 'error');
+      }
+    })
+    .catch(function (error) {
+      showStatus('Something went wrong. Please try again.', 'error');
+    })
+    .finally(function () {
       btn.disabled    = false;
       btn.textContent = 'Send Message';
-      showStatus('Message sent! Thanks for reaching out.', 'success');
-
-      setTimeout(function () {
-        statusEl.textContent = '';
-      }, 5000);
-    }, 1200);
+    });
   });
 
   // Clear error style on input
